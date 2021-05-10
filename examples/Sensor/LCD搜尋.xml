@@ -1,7 +1,0 @@
-<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="arduino_functions" id="CJ4eZ!%/1G2(XSbLBOh7" deletable="false" x="98" y="-116">
-    <statement name="LOOP_FUNC">
-      <block type="I2CLCD_scan" id="P|}UN+??uaJuS#2?xoT1"></block>
-    </statement>
-  </block>
-</xml>
