@@ -167,6 +167,7 @@ Blockly.Blocks['serial_print_hex'] = {
             this, 'SERIAL_ID', 'serial');
     }
 };
+
 Blockly.Blocks['serial_available'] = {
     /**
      * Block for creating a write to serial com function.
