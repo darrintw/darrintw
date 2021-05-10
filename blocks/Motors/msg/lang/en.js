@@ -6,6 +6,7 @@ goog.require('Blockly.Msg');
 
 Blockly.Msg.BLOCKS_SERVO_CATEGORY = 'Servo';
 
+/// Servo
 Blockly.Msg.ARD_SERVO_VAR = "SERVO variable";
 Blockly.Msg.ARD_SERVO_ATTACH = "attach SERVO from Pin";
 Blockly.Msg.ARD_SERVO_PIN = "Pin";
@@ -21,11 +22,27 @@ Blockly.Msg.ARD_SERVO_READ = "read SERVO from PIN#";
 Blockly.Msg.ARD_SERVO_READ_TIP = "Read a Servo angle";
 Blockly.Msg.ARD_SERVO_DETACH = "detach SERVO from Pin";
 Blockly.Msg.ARD_SERVO_DETACH_TIP = "";
-Blockly.Msg.AFMOROT = 'L293D';
-Blockly.Msg.AFMOROT_CONTROL = 'Command';
-Blockly.Msg.AFMOROT_FORWARD = 'Forward';
-Blockly.Msg.AFMOROT_BACKWARD = 'Backward';
-Blockly.Msg.AFMOROT_RELEASE = 'Stop';
-Blockly.Msg.AFMOROT_CHANNEL = 'AFMotor channel';
-Blockly.Msg.AFMOTOR_SPEED = 'AFMotor speed';
-Blockly.Msg.AFMOTOR_TIP = "";
+
+/// AFMorot
+Blockly.Msg.ARD_AFMOROT = 'L293D';
+Blockly.Msg.ARD_AFMOROT_CONTROL = 'Command';
+Blockly.Msg.ARD_AFMOROT_FORWARD = 'Forward';
+Blockly.Msg.ARD_AFMOROT_BACKWARD = 'Backward';
+Blockly.Msg.ARD_AFMOROT_RELEASE = 'Stop';
+Blockly.Msg.ARD_AFMOROT_CHANNEL = 'AFMotor channel';
+Blockly.Msg.ARD_AFMOTOR_SPEED = 'AFMotor speed';
+Blockly.Msg.ARD_AFMOTOR_TIP = "";
+
+/// Stepper
+Blockly.Msg.ARD_STEPPER = 'Stepper';
+Blockly.Msg.ARD_STEPPER_SETUP_4PIN = "Stepper 4pin";
+Blockly.Msg.ARD_STEPPER_PIN1 = "PIN1#";
+Blockly.Msg.ARD_STEPPER_PIN2 = "PIN2#";
+Blockly.Msg.ARD_STEPPER_PIN3 = "PIN3#";
+Blockly.Msg.ARD_STEPPER_PIN4 = "PIN4#";
+Blockly.Msg.ARD_STEPPPE_RREVOLUTION = 'steps per revolution';
+Blockly.Msg.ARD_STEPPER_SET_SPEED = 'setSpeed';
+Blockly.Msg.ARD_STEPPER_STEP = 'step';
+Blockly.Msg.ARD_TOOLTIP_STEPPER_2PIN= 'Initialize two-pin stepper motor';
+Blockly.Msg.ARD_TOOLTIP_STEPPER_4PIN= 'Initialize four-pin stepper motor';
+Blockly.Msg.ARD_TOOLTIP_STEPPER_MOVE = 'Set the number of movement steps of the stepper motor';

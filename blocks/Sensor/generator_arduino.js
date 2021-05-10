@@ -264,7 +264,7 @@ Blockly.Arduino['irrecv_setup'] = function (block) {
 
     Blockly.Arduino.addInclude('irrecv_', '#include <IRremote.h>');
     Blockly.Arduino.addVariable(irrecvId, irrecvVarCode, true);
-    Blockly.Arduino.addVariable(irrecvId, decodeVarCode, true);
+    Blockly.Arduino.addVariable(decodeId, decodeVarCode, true);
     Blockly.Arduino.addSetup('irrecv_' + irrecvId, irrecvSetupCode, true);
     var code = '';
     return code;

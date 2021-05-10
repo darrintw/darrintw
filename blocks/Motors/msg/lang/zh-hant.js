@@ -7,7 +7,7 @@ goog.require('Blockly.Msg');
 /// Toolbox category name
 Blockly.Msg.BLOCKS_SERVO_CATEGORY = "伺服馬達";
 
-/// Ardublockly name
+/// Servo
 Blockly.Msg.ARD_SERVO_VAR = "伺服馬達變數";
 Blockly.Msg.ARD_SERVO_ATTACH = "連接伺服馬達";
 Blockly.Msg.ARD_SERVO_PIN = "腳位";
@@ -24,11 +24,27 @@ Blockly.Msg.ARD_SERVO_READ_TIP = "讀取伺服馬達目前的角度";
 Blockly.Msg.ARD_SERVO_ATTACH = "設定伺服馬達腳位";
 Blockly.Msg.ARD_SERVO_DETACH = "離線伺服馬達";
 Blockly.Msg.ARD_SERVO_DETACH_TIP = "離線伺服馬達確保PWM的8、9腳位可以正常運作";
-Blockly.Msg.AFMOROT = "L293D";
-Blockly.Msg.AFMOROT_CONTROL = "指令";
-Blockly.Msg.AFMOROT_FORWARD = "正轉";
-Blockly.Msg.AFMOROT_BACKWARD = "反轉";
-Blockly.Msg.AFMOROT_RELEASE = "停止";
-Blockly.Msg.AFMOROT_CHANNEL = "頻道";
-Blockly.Msg.AFMOTOR_SPEED = "速度";
-Blockly.Msg.AFMOTOR_TIP = "";
+
+/// AFMorot
+Blockly.Msg.ARD_AFMOROT = "L293D";
+Blockly.Msg.ARD_AFMOROT_CONTROL = "指令";
+Blockly.Msg.ARD_AFMOROT_FORWARD = "正轉";
+Blockly.Msg.ARD_AFMOROT_BACKWARD = "反轉";
+Blockly.Msg.ARD_AFMOROT_RELEASE = "停止";
+Blockly.Msg.ARD_AFMOROT_CHANNEL = "頻道";
+Blockly.Msg.ARD_AFMOTOR_SPEED = "速度";
+Blockly.Msg.ARD_AFMOTOR_TIP = "";
+
+/// Stepper
+Blockly.Msg.ARD_STEPPER = '步進馬達';
+Blockly.Msg.ARD_STEPPER_SETUP_4PIN = "初始化步進馬達";
+Blockly.Msg.ARD_STEPPER_PIN1 = "腳位1#";
+Blockly.Msg.ARD_STEPPER_PIN2 = "腳位2#";
+Blockly.Msg.ARD_STEPPER_PIN3 = "腳位3#";
+Blockly.Msg.ARD_STEPPER_PIN4 = "腳位4#";
+Blockly.Msg.ARD_STEPPPE_RREVOLUTION = '每轉步數';
+Blockly.Msg.ARD_STEPPER_SET_SPEED = '設置轉速';
+Blockly.Msg.ARD_STEPPER_STEP = '遞增量';
+Blockly.Msg.ARD_TOOLTIP_STEPPER_2PIN = '用於初始化兩腳位步進馬達';
+Blockly.Msg.ARD_TOOLTIP_STEPPER_4PIN = '用於初始化四腳位步進馬達';
+Blockly.Msg.ARD_TOOLTIP_STEPPER_MOVE = '設置步進馬達的遞增量';
