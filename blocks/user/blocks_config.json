@@ -1,0 +1,11 @@
+{
+    "categoryName": "User",
+    "description": "Build your block yourself.",
+    "languages": ["en", "zh-hant"],
+    "toolboxName": "User",
+    "toolbox": [
+        "<category>",
+        "  <block type=\"user_block\"></block>",
+        "</category>"
+    ]
+}

@@ -1,0 +1,130 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="CJ4eZ!%/1G2(XSbLBOh7" deletable="false" x="34" y="41">
+    <statement name="SETUP_FUNC">
+      <block type="servo_attach" id="dUV|YVzjp%k%O[6@V(8P">
+        <field name="SERVO_NAME">servo_9</field>
+        <field name="SERVO_PIN">9</field>
+        <next>
+          <block type="servo_attach" id="k]f:{y7}QB=H=ug!Gv+q">
+            <field name="SERVO_NAME">servo_10</field>
+            <field name="SERVO_PIN">10</field>
+            <next>
+              <block type="servo_write" id="UTphgIm^ZJk:rkR.DZAU">
+                <field name="SERVO_NAME">servo_9</field>
+                <value name="SERVO_ANGLE">
+                  <block type="math_number" id="2Kes5oMQMJax]tOOj;:|">
+                    <field name="NUM">90</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_delay" id="YhnWMb%,8s[T`wE8f|8s">
+                    <value name="DELAY_TIME_MILI">
+                      <block type="math_number" id="+WNQV+B{gQ:35tWe]Ffw">
+                        <field name="NUM">1000</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="servo_write" id="1LHj6w`,Ws-h6Cfg`Cez">
+                        <field name="SERVO_NAME">servo_10</field>
+                        <value name="SERVO_ANGLE">
+                          <block type="math_number" id="rjgN;*oL*xl;ANW6j?X}">
+                            <field name="NUM">90</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="time_delay" id="HIn*L8;;KhKWnUzZHB7p">
+                            <value name="DELAY_TIME_MILI">
+                              <block type="math_number" id="!/[Yl{i^0ndS1R*)N3N*">
+                                <field name="NUM">1000</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="servo_write" id="qWc{2^mQAC?6Vgu`-uWf">
+        <field name="SERVO_NAME">servo_10</field>
+        <value name="SERVO_ANGLE">
+          <block type="math_number" id="G:HwNNQGwO8o{ibD5Ids">
+            <field name="NUM">120</field>
+          </block>
+        </value>
+        <next>
+          <block type="time_delay" id="{thM?IeRCR(U1FjX/|0M">
+            <value name="DELAY_TIME_MILI">
+              <block type="math_number" id=";kaM9E@Ra0HxxY02!{lB">
+                <field name="NUM">500</field>
+              </block>
+            </value>
+            <next>
+              <block type="servo_write" id="Y~ud6Rh*)!|pg}|}_LtR">
+                <field name="SERVO_NAME">servo_9</field>
+                <value name="SERVO_ANGLE">
+                  <block type="math_number" id=":~bxXeo=FlXBlQ#-CARa">
+                    <field name="NUM">100</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_delay" id="%n%G,0;a^i20XiH(9=3A">
+                    <value name="DELAY_TIME_MILI">
+                      <block type="math_number" id="6i!jz~Fg6bJ`RvpF^X81">
+                        <field name="NUM">500</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="servo_write" id="YtR}2=L0L6wJ#SP%[Z-U">
+                        <field name="SERVO_NAME">servo_9</field>
+                        <value name="SERVO_ANGLE">
+                          <block type="math_number" id="TF[F!b^Q{VBy8PJ@%Z~7">
+                            <field name="NUM">30</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="time_delay" id="9t?W;p|i.tbvQe:7zo/z">
+                            <value name="DELAY_TIME_MILI">
+                              <block type="math_number" id="3bFOKm%(F#w:yqCBgj|D">
+                                <field name="NUM">500</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="servo_write" id=".5I=!,.[bI-:|=4EF)h`">
+                                <field name="SERVO_NAME">servo_10</field>
+                                <value name="SERVO_ANGLE">
+                                  <block type="math_number" id="Lcx]K4)QXI2er,Z-#-7i">
+                                    <field name="NUM">60</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="time_delay" id="4QxedB=LrLqz1EW21O-j">
+                                    <value name="DELAY_TIME_MILI">
+                                      <block type="math_number" id="S*8STiO;pH?JenA6X#4s">
+                                        <field name="NUM">500</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

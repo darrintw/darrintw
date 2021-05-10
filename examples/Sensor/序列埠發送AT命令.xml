@@ -1,0 +1,93 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="CJ4eZ!%/1G2(XSbLBOh7" deletable="false" x="152" y="52">
+    <statement name="SETUP_FUNC">
+      <block type="variables_set" id="9(AH*,3kK#)_nX@;K}R.">
+        <field name="VAR">val</field>
+        <value name="VALUE">
+          <block type="char" id="WjQ!q5T,y.YMKk|WqqBV">
+            <field name="CHAR"> </field>
+          </block>
+        </value>
+        <next>
+          <block type="serial_setup" id="WWLnPw09j2::1Q(u:=,*">
+            <field name="SERIAL_ID">Serial</field>
+            <field name="SPEED">9600</field>
+            <next>
+              <block type="serial_print" id="kdj*D`%ujv*0%VMO?X5b">
+                <field name="SERIAL_ID">Serial</field>
+                <field name="NEW_LINE">TRUE</field>
+                <value name="CONTENT">
+                  <block type="text" id="paEhLc?cprcFxb#p]=T@">
+                    <field name="TEXT">BT is ready!</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="bluetooth" id="#k|-|_,|bl%I+UQj*,XV">
+                    <field name="RX_PIN">A4</field>
+                    <field name="TX_PIN">A5</field>
+                    <field name="BAUDRATE">9600</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="controls_if" id=",Tmx#Xv5?t1O5NYGg|I5">
+        <value name="IF0">
+          <block type="serial_available" id="J|O]W.kESy05Mnx1]q]M">
+            <field name="SERIAL_ID">Serial</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="h_%R+cK%R}L/FX#2,5DE">
+            <field name="VAR">val</field>
+            <value name="VALUE">
+              <block type="serial_read_char" id="+Bz^*}~w#v:pr[+:i%Jf">
+                <field name="SERIAL_ID">Serial</field>
+              </block>
+            </value>
+            <next>
+              <block type="bluetooth_print" id="0X]kvWoS!iH}Of7G?g!x">
+                <field name="NEW_LINE">FALSE</field>
+                <value name="CONTENT">
+                  <block type="variables_get" id="Um%x3xKd_)`8q)r{}Iix">
+                    <field name="VAR">val</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="controls_if" id=").wCY{|u7z2,e=hlG(y+">
+            <value name="IF0">
+              <block type="bluetooth_available" id="tl/+^iow?Z#vBRbzt=rp"></block>
+            </value>
+            <statement name="DO0">
+              <block type="variables_set" id="KdZZZ3)|m!H!93z0xcEG">
+                <field name="VAR">val</field>
+                <value name="VALUE">
+                  <block type="bluetooth_read" id="kk8xmo|M7=9+-@/Bh3]o"></block>
+                </value>
+                <next>
+                  <block type="serial_print" id="Fxr[.q!`2dm0/hC*eNfZ">
+                    <field name="SERIAL_ID">Serial</field>
+                    <field name="NEW_LINE">FALSE</field>
+                    <value name="CONTENT">
+                      <block type="variables_get" id="*(KY7bxncKU?Ie}+QEos">
+                        <field name="VAR">val</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

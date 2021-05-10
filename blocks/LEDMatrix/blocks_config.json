@@ -1,0 +1,11 @@
+{
+    "categoryName": "LEDMatrix",
+    "description": "LED Matrix.",
+    "languages": ["en", "zh-hant"],
+    "toolboxName": "LEDMatrix",
+    "toolbox": [
+        "<category>",
+        "  <block type=\"user_block\"></block>",
+        "</category>"
+    ]
+}

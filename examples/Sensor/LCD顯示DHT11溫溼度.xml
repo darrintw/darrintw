@@ -1,0 +1,209 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="variables_init" id=")2Jgw0STj*FaBT3(b#|i" x="150" y="154">
+    <field name="VAR">dht11_pin</field>
+    <value name="VALUE">
+      <block type="io_allpins" id=".wMNBi`N#dN9m{]H_MtU">
+        <field name="PIN">2</field>
+      </block>
+    </value>
+  </block>
+  <block type="arduino_functions" id="CJ4eZ!%/1G2(XSbLBOh7" deletable="false" x="145" y="193">
+    <statement name="SETUP_FUNC">
+      <block type="serial_setup" id="#r0O|wE[W8a!20dJhIB/">
+        <field name="SERIAL_ID">Serial</field>
+        <field name="SPEED">9600</field>
+        <next>
+          <block type="I2CLCD_setup" id="||bdzZ[e86+`(Kyg~OHr">
+            <field name="I2C_ADDR">0x27</field>
+            <field name="COL">16</field>
+            <field name="ROW">2</field>
+            <next>
+              <block type="controls_repeat_ext" id="0aie7X!k/(Zi5z8B^9hd">
+                <value name="TIMES">
+                  <block type="math_number" id="+OHl@6}?5X_8K+bHXo-f">
+                    <field name="NUM">3</field>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="I2CLCD_backlightOn" id="#q5}t{#0XcD]wC;%;Fw,">
+                    <next>
+                      <block type="time_delay" id="Qp5[Kd){qlGlt}Nu/Jq#">
+                        <value name="DELAY_TIME_MILI">
+                          <block type="math_number" id="|!+M=xn|}E~72J(5p#[a">
+                            <field name="NUM">500</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="I2CLCD_backlightOff" id="Ne0}?uB,YZmh-H/Ut.i~">
+                            <next>
+                              <block type="time_delay" id="k,KVc@a41-]1ITf%vsf^">
+                                <value name="DELAY_TIME_MILI">
+                                  <block type="math_number" id="KTu5(+_4dHzxivX~%p{d">
+                                    <field name="NUM">500</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="I2CLCD_backlightOn" id="(b?Xi)t6A;sIcv1*ZrSq">
+                    <next>
+                      <block type="I2CLCD_clear" id="{7LsSUyqHfFI)@6UA:tk">
+                        <next>
+                          <block type="I2CLCD_print" id="b(?.M7%7|utTxva^oY0W">
+                            <value name="CONTENT">
+                              <block type="text" id="WHTMjaR{4N/j,GjnnAgA">
+                                <field name="TEXT">Hello</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="time_delay" id="?L_RWkj;9DvBXH|_ca]h">
+                                <value name="DELAY_TIME_MILI">
+                                  <block type="math_number" id="x[|shcT!sd.C3-u@?Ms~">
+                                    <field name="NUM">1000</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="I2CLCD_clear" id="r8`:J]CcDMiFf6l/UP)Z">
+        <next>
+          <block type="I2CLCD_print" id="@OP(glPq8xTKzLq|wL#G">
+            <value name="CONTENT">
+              <block type="text_join" id="brmebuCrE)gc58J_XeOh">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="+4vb,bsd7`TWSLO*-}@m">
+                    <field name="TEXT">Temp:</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="DHT11_readTemp_var" id="]T%b6]YcV@:~ztOsg*lc">
+                    <value name="DATAPIN">
+                      <block type="variables_get" id="s{!p`PE+*?aHhU:?^]/m">
+                        <field name="VAR">dht11_pin</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="I2CLCD_move" id="uDR_mG,/(9rO(r^/b{+4">
+                <value name="X">
+                  <block type="math_number" id="ULx8uoKgtic@/1|i]U1J">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <value name="Y">
+                  <block type="math_number" id="G!:tA{YS1dS7zVXdE{Na">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="I2CLCD_print" id="Q/Y}YmkKRmDQkOBEbnSw">
+                    <value name="CONTENT">
+                      <block type="text_join" id="T(/Hvab={j18AI55oi.)">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="czWFC[EF{ZR3@0{NIZZ2">
+                            <field name="TEXT">Hmu:</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="DHT11_readHumi_var" id="3{YRTTW2q+U=c]UmV#IQ">
+                            <value name="DATAPIN">
+                              <block type="variables_get" id="@f/ttTc0,n2r@|pPBlvc">
+                                <field name="VAR">dht11_pin</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="serial_print" id="vLxts!y}g}(~CQ69^/m/">
+                        <field name="SERIAL_ID">Serial</field>
+                        <field name="NEW_LINE">TRUE</field>
+                        <value name="CONTENT">
+                          <block type="text_join" id="n|~d3c^/uF)}MA}U|QW#">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="_|oQ(uVJ7IsI=1zsT*=w">
+                                <field name="TEXT">Hmu:</field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="DHT11_readHumi_var" id="!z_k0*^%UrWqlsO^j1ba">
+                                <value name="DATAPIN">
+                                  <block type="variables_get" id="S{AmoJAI5^Ja,/69vMWc">
+                                    <field name="VAR">dht11_pin</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="serial_print" id="~9e*4}r!Dfmb*T4UCc1~">
+                            <field name="SERIAL_ID">Serial</field>
+                            <field name="NEW_LINE">TRUE</field>
+                            <value name="CONTENT">
+                              <block type="text_join" id="U+Uvj5S7s}T84OdSeS)R">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="N^hr{S4LG[}/BybSoL8!">
+                                    <field name="TEXT">Temp:</field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="DHT11_readTemp_var" id="(Cx#9ld(dVnB~ZU:f5Lu">
+                                    <value name="DATAPIN">
+                                      <block type="variables_get" id="ddYn9Egg37np@)JC2pN@">
+                                        <field name="VAR">dht11_pin</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="time_delay" id="T@g-wCV5w+qY:V%8KyS;">
+                                <value name="DELAY_TIME_MILI">
+                                  <block type="math_number" id="d/0^ZnO/N!Q1M!bhLimT">
+                                    <field name="NUM">2000</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

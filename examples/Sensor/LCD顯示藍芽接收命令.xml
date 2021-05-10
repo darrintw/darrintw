@@ -1,0 +1,272 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="CJ4eZ!%/1G2(XSbLBOh7" deletable="false" x="219" y="245">
+    <statement name="SETUP_FUNC">
+      <block type="serial_setup" id="#r0O|wE[W8a!20dJhIB/">
+        <field name="SERIAL_ID">Serial</field>
+        <field name="SPEED">9600</field>
+        <next>
+          <block type="variables_set" id="v]GG46.?]#K#R0_oE0Oa">
+            <field name="VAR">val</field>
+            <value name="VALUE">
+              <block type="char" id="|U]U~8[H`n1+nx`iy_D3">
+                <field name="CHAR"> </field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="Q!O],I|wjg^:`1msY(Q}">
+                <field name="VAR">str</field>
+                <value name="VALUE">
+                  <block type="text" id="{2g@n2q_Y/iWrr4VZ/R_">
+                    <field name="TEXT"></field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="XCLG~9B(?COk6TroXaM,">
+                    <field name="VAR">row</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="-JeH?ebXsowV@LZn}p-q">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="I2CLCD_setup" id="||bdzZ[e86+`(Kyg~OHr">
+                        <field name="I2C_ADDR">0x27</field>
+                        <field name="COL">16</field>
+                        <field name="ROW">2</field>
+                        <next>
+                          <block type="controls_repeat_ext" id="0aie7X!k/(Zi5z8B^9hd">
+                            <value name="TIMES">
+                              <block type="math_number" id="+OHl@6}?5X_8K+bHXo-f">
+                                <field name="NUM">1</field>
+                              </block>
+                            </value>
+                            <statement name="DO">
+                              <block type="I2CLCD_backlightOn" id="#q5}t{#0XcD]wC;%;Fw,">
+                                <next>
+                                  <block type="time_delay" id="Qp5[Kd){qlGlt}Nu/Jq#">
+                                    <value name="DELAY_TIME_MILI">
+                                      <block type="math_number" id="|!+M=xn|}E~72J(5p#[a">
+                                        <field name="NUM">500</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="I2CLCD_backlightOff" id="Ne0}?uB,YZmh-H/Ut.i~">
+                                        <next>
+                                          <block type="time_delay" id="k,KVc@a41-]1ITf%vsf^">
+                                            <value name="DELAY_TIME_MILI">
+                                              <block type="math_number" id="KTu5(+_4dHzxivX~%p{d">
+                                                <field name="NUM">500</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="I2CLCD_backlightOn" id="(b?Xi)t6A;sIcv1*ZrSq">
+                                <next>
+                                  <block type="I2CLCD_clear" id="{7LsSUyqHfFI)@6UA:tk">
+                                    <next>
+                                      <block type="bluetooth" id=".7eUi0}?#q+Kq],(.JWy">
+                                        <field name="RX_PIN">8</field>
+                                        <field name="TX_PIN">9</field>
+                                        <field name="BAUDRATE">9600</field>
+                                        <next>
+                                          <block type="serial_print" id=")2%+6(pN*RxV3Mp5,S@D">
+                                            <field name="SERIAL_ID">Serial</field>
+                                            <field name="NEW_LINE">TRUE</field>
+                                            <value name="CONTENT">
+                                              <block type="text" id="/9VZ:scAqIZj:OR-@l@K">
+                                                <field name="TEXT">BT is Ready</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="I2CLCD_print" id="b(?.M7%7|utTxva^oY0W">
+                                                <value name="CONTENT">
+                                                  <block type="text" id="WHTMjaR{4N/j,GjnnAgA">
+                                                    <field name="TEXT">BT is Ready</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="I2CLCD_move" id="Q2Cmg5`_:?xnO,n-_t%=">
+        <value name="X">
+          <block type="math_number" id="}+0{lyABy)-KeJ?~Q[-/">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <value name="Y">
+          <block type="math_number" id=";[vL8*tXalX2)N0uIM7Y">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="I2CLCD_print" id="dt1K3}3S|_SvC74t,CIh">
+            <value name="CONTENT">
+              <block type="text" id="L{3l50zJqO^V:LF6z-dj">
+                <field name="TEXT">BT is receving..</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_whileUntil" id="TP*d#zgD)1Ma*4b0.Qox">
+                <field name="MODE">WHILE</field>
+                <value name="BOOL">
+                  <block type="bluetooth_available" id="+C(G@C]S14qCqiYGQEjN"></block>
+                </value>
+                <statement name="DO">
+                  <block type="variables_set" id="@unei0o.39YyE#1]RGcA">
+                    <field name="VAR">row</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id="34!hlM#IZwFcJ5wE~2vV">
+                        <field name="OP">ADD</field>
+                        <value name="A">
+                          <block type="variables_get" id="lIeRJfK!wqb/JtbAgZ+w">
+                            <field name="VAR">row</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id=")d%P]NWRSREe?-Cg#9k!">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="Lc_2WLxWe;WUrvCPklcA">
+                        <field name="VAR">val</field>
+                        <value name="VALUE">
+                          <block type="bluetooth_read" id="{l|xM|,:xIO9gAeH0PFT"></block>
+                        </value>
+                        <next>
+                          <block type="text_append" id="Z=PxqKCZ2TxB3RgbM6JN">
+                            <field name="VAR">str</field>
+                            <value name="TEXT">
+                              <block type="variables_get" id="%J1WlW?jWYX9@g^Sk/+D">
+                                <field name="VAR">val</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="serial_print" id="qF4(xW3g/Dm536k{-oD2">
+                                <field name="SERIAL_ID">Serial</field>
+                                <field name="NEW_LINE">FALSE</field>
+                                <value name="CONTENT">
+                                  <block type="variables_get" id="=c~oISUsZ3CE0q^_}ykR">
+                                    <field name="VAR">val</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="controls_if" id="DW:B-CG8W5Z.KETYGhGO">
+                                    <value name="IF0">
+                                      <block type="logic_compare" id="*D3vR2|0FKN*EBxTuCuK">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                          <block type="variables_get" id="@RmOTk+kw=xe!Pbc#*|[">
+                                            <field name="VAR">row</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="math_number" id="^0Hp[+9uA,Rf9yCGM)f^">
+                                            <field name="NUM">16</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="variables_set" id="2%H}zgx~0kRL1JPKhRWV">
+                                        <field name="VAR">str</field>
+                                        <value name="VALUE">
+                                          <block type="text" id="l{fn+1`pTvGbs9z65~tV">
+                                            <field name="TEXT"></field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="4m].`T;%zm6;nlij6YBr">
+                                            <field name="VAR">row</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="RojipN}{-v#9e/pShj.j">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="I2CLCD_clear" id="O(EIP[s,{9PQ),{[zZb;">
+                                                <next>
+                                                  <block type="I2CLCD_print" id="FS6,L%{n6vR-nGYSYRg[">
+                                                    <value name="CONTENT">
+                                                      <block type="text" id="Y.MFy2ky19R^Jrv{:~)R">
+                                                        <field name="TEXT">BT is receving..</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="I2CLCD_move" id="1x.ECa_vU{,I8DVYfOY@">
+                                        <value name="X">
+                                          <block type="math_number" id="N8T3b!rce%6`!bX;9h:v">
+                                            <field name="NUM">0</field>
+                                          </block>
+                                        </value>
+                                        <value name="Y">
+                                          <block type="math_number" id="-}mCR=KrJOi~rshGyu+:">
+                                            <field name="NUM">1</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="I2CLCD_print" id="3P{!nL*UhFt|`LlTOk^h">
+                                            <value name="CONTENT">
+                                              <block type="variables_get" id="T}W.]{b{-PwKhWkk2oF{">
+                                                <field name="VAR">str</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

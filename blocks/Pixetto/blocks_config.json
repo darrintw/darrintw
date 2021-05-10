@@ -1,0 +1,31 @@
+{
+  "categoryName": "Pixetto",
+  "description": "Pixetto sensor block.",
+  "languages": [
+    "en",
+    "zh-hant"
+  ],
+  "toolboxName": "Pixetto",
+  "toolbox": [
+    "<category>",
+    "  <block type=\"pixetto_setup\">",
+    "    <field name=\"PIXETTO_RX\">A5</field>",
+    "    <field name=\"PIXETTO_TX\">A4</field>",
+    "  </block>",
+    "  <block type=\"pixetto_detected\"></block>",
+    "  <block type=\"pixetto_getfuncid\"></block>",
+    "  <block type=\"pixetto_gettypeid\"></block>",
+    "  <block type=\"pixetto_getposx\"></block>",
+    "  <block type=\"pixetto_getposy\"></block>",
+    "  <block type=\"pixetto_getwidth\"></block>",
+    "  <block type=\"pixetto_getheigth\"></block>",
+    "  <block type=\"pixetto_function\"></block>",
+    "  <block type=\"pixetto_color\"></block>",
+    "  <block type=\"pixetto_shape\"></block>",
+    "  <block type=\"pixetto_sign\"></block>",
+    "  <block type=\"pixetto_inputnum\"></block>",
+    "  <block type=\"pixetto_num\"></block>",
+    "  <block type=\"pixetto_latter\"></block>",
+    "</category>"
+  ]
+}

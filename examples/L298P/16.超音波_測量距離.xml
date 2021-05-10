@@ -1,0 +1,78 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="CJ4eZ!%/1G2(XSbLBOh7" x="34" y="41">
+    <statement name="SETUP_FUNC">
+      <block type="serial_setup" id="#XOgb~M?U4]bQN7[@^=Q">
+        <field name="SERIAL_ID">Serial</field>
+        <field name="SPEED">9600</field>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="serial_print" id="GB1oBz8lR_Y(MJS]W+Jp">
+        <field name="SERIAL_ID">Serial</field>
+        <field name="NEW_LINE">FALSE</field>
+        <value name="CONTENT">
+          <block type="text" id="@`LSB4]kCy_D%9tL1.^K">
+            <field name="TEXT">left distance =</field>
+          </block>
+        </value>
+        <next>
+          <block type="serial_print" id="@6-rEKsyD`q]By^g(,)}">
+            <field name="SERIAL_ID">Serial</field>
+            <field name="NEW_LINE">FALSE</field>
+            <value name="CONTENT">
+              <block type="ultrasonic_distance" id="~XaXRi@2Q#6VCV(9R!Mz">
+                <field name="TRIG_PIN">A2</field>
+                <field name="ECHO_PIN">A3</field>
+                <field name="DISTANCE_UNIT">cm</field>
+              </block>
+            </value>
+            <next>
+              <block type="serial_print" id=")A}IGybphXd%Y%MjE9~8">
+                <field name="SERIAL_ID">Serial</field>
+                <field name="NEW_LINE">FALSE</field>
+                <value name="CONTENT">
+                  <block type="text" id="hS(%4LvF+D^%m{^Q4BRJ">
+                    <field name="TEXT">,</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="serial_print" id="}GOUK@ainDM};q8h.Kr]">
+                    <field name="SERIAL_ID">Serial</field>
+                    <field name="NEW_LINE">FALSE</field>
+                    <value name="CONTENT">
+                      <block type="text" id=":(C,+E[ZTOPS5cw#A3!d">
+                        <field name="TEXT">right distance =</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="serial_print" id="OGEG[Ekh21GDHkG0@F;K">
+                        <field name="SERIAL_ID">Serial</field>
+                        <field name="NEW_LINE">TRUE</field>
+                        <value name="CONTENT">
+                          <block type="ultrasonic_distance" id="=LcfTi/Fjc0(7Ez!PUY9">
+                            <field name="TRIG_PIN">A4</field>
+                            <field name="ECHO_PIN">A5</field>
+                            <field name="DISTANCE_UNIT">cm</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="time_delay" id="[E+RWR`rW@?;rc|35lwn">
+                            <value name="DELAY_TIME_MILI">
+                              <block type="math_number" id="?cFw9L8m]~Uo=;g{5AZk">
+                                <field name="NUM">1000</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

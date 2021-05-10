@@ -1,0 +1,47 @@
+{
+  "categoryName": "Motors",
+  "description": "Motors blocks to demonstrate the feature.",
+  "languages": [
+    "en",
+    "zh-hant"
+  ],
+  "toolboxName": "Motors",
+  "toolbox": [
+    "<category>",
+    "  <block type=\"servo_attach\">",
+    "    <field name=\"SERVO_NAME\">servo_9</field>",
+    "    <field name=\"SERVO_PIN\">9</field>",
+    "  </block>",
+    "  <block type=\"servo_read\">",
+    "    <field name=\"SERVO_NAME\">servo_9</field>",
+    "  </block>",
+    "  <block type=\"servo_write\">",
+    "    <field name=\"SERVO_NAME\">servo_9</field>",
+    "    <value name=\"SERVO_ANGLE\">",
+    "      <shadow type=\"math_number\">",
+    "        <field name=\"NUM\">90</field>",
+    "      </shadow>",
+    "    </value>",
+    "  </block>",
+    "  <block type=\"servo_detach\">",
+    "    <field name=\"SERVO_NAME\">servo_9</field>",
+    "  </block>",
+    "  <block type=\"afmotor\">",
+    "    <field name=\"afmotor_channel\">1</field>",
+    "    <field name=\"afmotor_control\">FORWARD</field>",
+    "    <field name=\"afmotor_speed\">255</field>",
+    "  </block>",
+    "  <block type=\"afmotor_var\">",
+    "    <field name=\"afmotor_channel\">1</field>",
+    "    <field name=\"afmotor_control\">FORWARD</field>",
+    "    <value name=\"afmotor_speed\">",
+    "        <shadow type=\"math_number\">",
+    "          <field name=\"NUM\">255</field>",
+    "        </shadow>",
+    "    </value>",
+    "  </block>",
+    "</category>"
+  ]
+}
+
+

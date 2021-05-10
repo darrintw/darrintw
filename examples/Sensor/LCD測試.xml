@@ -1,0 +1,179 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="CJ4eZ!%/1G2(XSbLBOh7" deletable="false" x="98" y="-116">
+    <statement name="SETUP_FUNC">
+      <block type="I2CLCD_setup" id="7|qX7.{SXv~`x+xVZ-p;">
+        <field name="I2C_ADDR">0x27</field>
+        <field name="COL">16</field>
+        <field name="ROW">2</field>
+        <next>
+          <block type="controls_for" id="gO`,.=yK#g0WMiemD*cI">
+            <field name="VAR">i</field>
+            <value name="FROM">
+              <block type="math_number" id="|:vH~,Npc/ITufzE]@om">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="TO">
+              <block type="math_number" id="N+vGmUZr^gwdQ7,w%zQ=">
+                <field name="NUM">2</field>
+              </block>
+            </value>
+            <value name="BY">
+              <block type="math_number" id="=73,}2+NMH)ryjJgpfR4">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="I2CLCD_backlightOn" id="#,;toaOP7_]kn5{kvzaB">
+                <next>
+                  <block type="time_delay" id="se7=nr)iHp:ihZI?hD2s">
+                    <value name="DELAY_TIME_MILI">
+                      <block type="math_number" id="8UBaw;PB)z@74t+BKt*d">
+                        <field name="NUM">250</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="I2CLCD_backlightOff" id="_MQ5?]r1qYI,P.A%04;w">
+                        <next>
+                          <block type="time_delay" id="Tqe,k?i%4(Be/7f.v{ae">
+                            <value name="DELAY_TIME_MILI">
+                              <block type="math_number" id="J,q_}9(6,W.Z:@}|YK1G">
+                                <field name="NUM">250</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="I2CLCD_backlightOn" id="h5{{4^d*sRR2582I|)[Y">
+                <next>
+                  <block type="I2CLCD_move" id=".-jgA0[q0w~9-|0DE.Pz">
+                    <value name="X">
+                      <block type="math_number" id="?Z4W)2^Pt^x#[Z{y}LD5">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <value name="Y">
+                      <block type="math_number" id="Q`z5zK8ZXktN9X2zK@hL">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="I2CLCD_print" id="/]T[Zewa8-9i(xK7?PiF">
+                        <value name="CONTENT">
+                          <block type="text" id="M:-1~DU]KR;@gm8FMgBg">
+                            <field name="TEXT">LCD_1602_Sample!</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="time_delay" id="GCQjU7c2C;@5o`]4`^*y">
+                            <value name="DELAY_TIME_MILI">
+                              <block type="math_number" id="?C:G!RHFhAW0T{xT8GGC">
+                                <field name="NUM">1000</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="I2CLCD_move" id="-0ubQlu_r?!2p@TLwAIZ">
+                                <value name="X">
+                                  <block type="math_number" id="5^A(e9vsd3GJB2PS0cGe">
+                                    <field name="NUM">0</field>
+                                  </block>
+                                </value>
+                                <value name="Y">
+                                  <block type="math_number" id="s1kNm~vMx(!z7)ct3214">
+                                    <field name="NUM">1</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="I2CLCD_print" id="NQis@]JL4OE50-+Oa3e0">
+                                    <value name="CONTENT">
+                                      <block type="text" id="`|T^IXG`N2?sm/qLl1i4">
+                                        <field name="TEXT">Hello, Maker!</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="time_delay" id="RHQvFryKdI/:q}f}1mO]">
+                                        <value name="DELAY_TIME_MILI">
+                                          <block type="math_number" id="#*J.hbc}B`1*TZ]/;mVU">
+                                            <field name="NUM">8000</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="I2CLCD_move" id=";?nZC;Si77:2dg6?Q)g*">
+        <value name="X">
+          <block type="math_number" id="d9(MS=ws?::Y*j(OOo}V">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <value name="Y">
+          <block type="math_number" id="vqoOTD7}(xIg*POU^bZ4">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="I2CLCD_print" id="T%u1HVxvl;Wv*^[0e/r0">
+            <value name="CONTENT">
+              <block type="text" id="S#7(RUevYGo=y1iql=fR">
+                <field name="TEXT">LCD 1602 Sample!</field>
+              </block>
+            </value>
+            <next>
+              <block type="I2CLCD_move" id="9Suhx1sv2)}ixafzM]RW">
+                <value name="X">
+                  <block type="math_number" id="m:]~M?fukq0(QyMDal2G">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <value name="Y">
+                  <block type="math_number" id="WQT;p26|Ya811]@CycR.">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="I2CLCD_print" id="sc,K~I;.=:e2#LF`EU9X">
+                    <value name="CONTENT">
+                      <block type="math_arithmetic" id="PKP7p5HQfk@r_mTZ}eh*">
+                        <field name="OP">DIVIDE</field>
+                        <value name="A">
+                          <block type="time_millis" id="zS^}k@L`mu4YE]|[(p+X"></block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="Ozo*jD%yd};ohV_Ol(+u">
+                            <field name="NUM">1000</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

@@ -1,0 +1,645 @@
+<!DOCTYPE HTML>
+<html lang="utf-8">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width, initial-scale=0.5" name="viewport"/>
+  <meta content="#00878F" name="theme-color"/>
+  <link href="img/favicon.ico" rel="icon"/>
+  <title class="translatable_title">
+   Ardublockly  v20210510_1308
+  </title>
+  <!-- Materialize, Prettify, and Ardublockly CSS -->
+  <link href="materialize/materialize.css" media="screen,projection" rel="stylesheet"/>
+  <link href="prettify/arduino.css" rel="stylesheet"/>
+  <link href="ardublockly.css" media="screen,projection" rel="stylesheet"/>
+  <script src="global.js">
+  </script>
+  <!-- Ardublockly - These three files contain the compress version -->
+  <!--script src="../blockly/blockly_compressed.js"></script-->
+  <script src="../blockly/blockly_uncompressed.js">
+  </script>
+  <script src="../blockly/blocks_compressed.js">
+  </script>
+  <script src="../blockly/arduino_compressed.js">
+  </script>
+  <!-- Default language js files, user selection appended to head on load -->
+  <script src="../blockly/msg/js/zh-hant.js">
+  </script>
+  <script src="msg/zh-hant.js">
+  </script>
+ </head>
+ <body>
+  <!-- Horizontal Navigation bar -->
+  <nav class="nav-fixed arduino_teal">
+   <div class="nav-wrapper container">
+    <a class="show-on-large button-collapse" data-activates="slide-out" href="#" id="button-collapse">
+     <i class="mdi-navigation-menu">
+     </i>
+    </a>
+    <a class="brand-logo" id="logo-container">
+     <span class="app_title translatable_title">
+      Ardublockly:
+     </span>
+     <!-- Sketch name editable text field -->
+     <span class="sketch_name_wrapper">
+      <!--<i class="mdi-image-edit sketch_name_icon"></i>-->
+      <label for="sketch_name">
+       <input class="sketch_name" id="sketch_name" size="250" type="text"/>
+      </label>
+     </span>
+    </a>
+    <!-- Horizontal Navbar links only shown on large resolutions -->
+    <ul class="right hide-on-med-and-down" id="nav-mobile">
+     <li>
+      <a href="#" id="button_serial_monitor">
+       <span class="translatable_serial_monitor">
+        序列埠監控
+       </span>
+       <i class="mdi-hardware-computer left">
+       </i>
+      </a>
+     </li>
+     <li>
+      <a href="#" id="button_examples">
+       <span class="translatable_examples">
+        範例
+       </span>
+       <i class="mdi-file-folder left">
+       </i>
+      </a>
+     </li>
+     <li>
+      <a href="#" id="button_codeswitch">
+       <span class="translatable_codeswitch">
+        代碼切換
+       </span>
+       <i class="mdi-image-remove-red-eye left">
+       </i>
+      </a>
+     </li>
+    </ul>
+   </div>
+  </nav>
+  <!-- Sidebar navigation -->
+  <ul class="side-nav" id="slide-out">
+   <li class="logo">
+    <img alt="Ardublockly block image" src="img/sidenav_header.png"/>
+   </li>
+   <li class="no-padding">
+    <ul>
+     <li id="menu_codeswitch">
+      <a href="#">
+       <span class="translatable_codeswitch">
+        代碼切換
+       </span>
+       <i class="mdi-image-remove-red-eye left">
+       </i>
+      </a>
+     </li>
+     <li id="menu_load_block">
+      <a href="#">
+       <span class="translatable_open_block">
+        開啟積木檔
+       </span>
+       <i class="mdi-file-file-upload left">
+       </i>
+      </a>
+     </li>
+     <li id="menu_save_block">
+      <a href="#">
+       <span class="translatable_save_block">
+        儲存積木檔
+       </span>
+       <i class="mdi-file-file-download left">
+       </i>
+      </a>
+     </li>
+     <li id="menu_save_sketch">
+      <a href="#">
+       <span class="translatable_save_sketch">
+        下載Arduino檔
+       </span>
+       <i class="mdi-file-file-download left">
+       </i>
+      </a>
+     </li>
+     <li id="menu_settings">
+      <a href="#">
+       <span class="translatable_settings">
+        設定
+       </span>
+       <i class="mdi-action-settings left">
+       </i>
+      </a>
+     </li>
+     <!--li id="menu_blockfactory"><a href="#"><span class="translatable_blockfactory">自訂積木</span><i
+                    class="mdi-action-settings left"></i></a></li-->
+     <li id="menu_doc">
+      <a href="https://drive.google.com/open?id=1VFh3OJCPvyYcUR3qm5FQgWk3YgzygKxE" target="_blank">
+       <span class="translatable_documentation">
+        使用說明
+       </span>
+       <i class="mdi-action-help left">
+       </i>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="no-padding side-menu-end">
+   </li>
+  </ul>
+  <!-- Content -->
+  <div class="container">
+   <div class="row">
+    <div class="col s12 m12 l12" id="main_panel" style="position:relative">
+     <!-- Toolbox visibility button -->
+     <a class="waves-effect waves-light btn-flat button_toggle_toolbox_off" id="button_toggle_toolbox" style="display: none">
+      <i class="mdi-action-visibility-off" id="button_toggle_toolbox_icon">
+      </i>
+     </a>
+     <!-- Arduino IDE action buttons -->
+     <div id="ide_buttons_wrapper">
+      <a class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal" id="button_ide_middle">
+       <i class="mdi-navigation-check" id="button_ide_middle_icon">
+       </i>
+      </a>
+      <a class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange" id="button_ide_large">
+       <i class="mdi-av-play-arrow" id="button_ide_large_icon">
+       </i>
+      </a>
+      <div class="preloader-wrapper active ide_loader" id="button_ide_large_spinner" style="display:none">
+       <div class="spinner-layer spinner-orange">
+        <div class="circle-clipper left">
+         <div class="circle">
+         </div>
+        </div>
+        <div class="gap-patch">
+         <div class="circle">
+         </div>
+        </div>
+        <div class="circle-clipper right">
+         <div class="circle">
+         </div>
+        </div>
+       </div>
+       <div class="spinner-layer spinner-dark-teal">
+        <div class="circle-clipper left">
+         <div class="circle">
+         </div>
+        </div>
+        <div class="gap-patch">
+         <div class="circle">
+         </div>
+        </div>
+        <div class="circle-clipper right">
+         <div class="circle">
+         </div>
+        </div>
+       </div>
+       <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+         <div class="circle">
+         </div>
+        </div>
+        <div class="gap-patch">
+         <div class="circle">
+         </div>
+        </div>
+        <div class="circle-clipper right">
+         <div class="circle">
+         </div>
+        </div>
+       </div>
+       <div class="spinner-layer spinner-light-teal">
+        <div class="circle-clipper left">
+         <div class="circle">
+         </div>
+        </div>
+        <div class="gap-patch">
+         <div class="circle">
+         </div>
+        </div>
+        <div class="circle-clipper right">
+         <div class="circle">
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <!-- Blockly Panel -->
+     <div class="card-panel white" style="padding: 0">
+      <div class="content blocks_panel_large" id="blocks_panel">
+       <div class="content z-depth-1" id="content_blocks">
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- Arduino Code Panel -->
+    <div class="ide_output_wrapper">
+    </div>
+    <div class="col s12 m12 l4" id="right_panel" style="display: none">
+     <ul class="collapsible z-depth-1" data-collapsible="accordion">
+      <li>
+       <div class="collapsible-header active">
+        <span class="collapsible_logo">
+         { }
+        </span>
+        <span class="translatable_arduinoSourceCode">
+         Arduino 草稿碼
+        </span>
+       </div>
+       <div class="collapsible-body">
+        <pre class="content content_height_transition content_arduino_large" id="content_arduino"></pre>
+       </div>
+      </li>
+      <li>
+       <div class="collapsible-header" id="xml_collapsible_header">
+        <span class="collapsible_logo">
+         &lt; &gt;
+        </span>
+        <span class="translatable_blocksXml">
+         積木 XML 標籤碼
+        </span>
+       </div>
+       <div class="collapsible-body" id="xml_collapsible_body" style="position:relative">
+        <a class="btn-floating btn-large waves-effect waves-light arduino_teal z-depth-1-half" id="button_load_xml">
+         <i class="mdi-action-extension">
+         </i>
+        </a>
+        <label for="content_xml">
+         <textarea class="content content_height_transition content_xml_large" id="content_xml" wrap="soft"></textarea>
+        </label>
+       </div>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <!-- IDE Output content -->
+  <div class="ide_output_wrapper" id="ide_output">
+   <ul class="collapsible ide_output_collapsible" data-collapsible="expandable">
+    <li>
+     <div class="collapsible-header ide_output_header_normal" id="ide_output_collapsible_header">
+      <i class="mdi-action-swap-vert Medium" style="font-size: 2.2rem;">
+      </i>
+      <span class="translatable_arduinoOpMainTitle">
+       Arduino IDE 輸出
+      </span>
+     </div>
+     <div class="collapsible-body">
+      <div class="content" id="content_ide_output">
+      </div>
+     </div>
+    </li>
+   </ul>
+  </div>
+  <div id="ide_output_spacer">
+  </div>
+  <!-- Settings: Displayed as a Materialize Modal -->
+  <div class="modal modal-fixed-footer" id="settings_dialog">
+   <div class="modal-content">
+    <h4>
+     <span class="translatable_settings">
+      設定
+     </span>
+    </h4>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_compilerLocation">
+       編譯器位置:
+      </span>
+     </label>
+     <label for="settings_compiler_location">
+      <input id="settings_compiler_location" type="text"/>
+     </label>
+    </div>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_sketchFolder">
+       草稿碼目錄:
+      </span>
+     </label>
+     <label for="settings_sketch_location">
+      <input id="settings_sketch_location" type="text"/>
+     </label>
+    </div>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_arduinoBoard">
+       Arduino開發版:
+      </span>
+     </label>
+     <label for="board">
+      <select id="board" name="settings_board">
+       <option class="translatable_arduinoBoardDefault" value="uno">
+        Arduino 開發版未知
+       </option>
+      </select>
+     </label>
+    </div>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_comPort">
+       序列埠:
+      </span>
+     </label>
+     <label for="serial_port">
+      <select id="serial_port" name="settings_serial">
+       <option class="translatable_comPortDefault" value="COMX">
+        序列埠未知
+       </option>
+      </select>
+     </label>
+    </div>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_baudrate">
+       鮑率:
+      </span>
+     </label>
+     <label for="baud_rate_setting">
+      <select id="baud_rate_setting" name="setting_baud_rate" readonly="">
+       <option value="9600">
+        9600 baud
+       </option>
+      </select>
+     </label>
+    </div>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_defaultIdeButton">
+       預設IDE按鈕:
+      </span>
+     </label>
+     <label for="ide_settings">
+      <select id="ide_settings" name="settings_ide">
+       <option class="translatable_defaultIdeButtonDefault" value="upload">
+        IDE 選項設定未知
+       </option>
+      </select>
+     </label>
+    </div>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_language">
+       介面語言:
+      </span>
+     </label>
+     <label for="language">
+      <select id="language" name="settings_language">
+      </select>
+     </label>
+    </div>
+   </div>
+   <div class="modal-footer">
+    <a class="waves-effect btn-flat modal-close" href="#">
+     <span class="translatable_return">
+      返回
+     </span>
+    </a>
+   </div>
+  </div>
+  <!-- Settings: Displayed as a Materialize Modal -->
+  <div class="modal modal-fixed-footer" id="settings_simple_dialog">
+   <div class="modal-content">
+    <h4>
+     <span class="translatable_settings">
+      設定
+     </span>
+    </h4>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_arduinoBoard">
+       Arduino開發版:
+      </span>
+     </label>
+     <label for="board">
+      <select id="simple_board" name="settings_simple_board">
+       <option class="translatable_arduinoBoardDefault" value="uno">
+        Arduino 開發版未知
+       </option>
+      </select>
+     </label>
+    </div>
+    <div class="modal_section">
+     <label>
+      <span class="translatable_language">
+       介面語言:
+      </span>
+     </label>
+     <label for="simple_language">
+      <select id="simple_language" name="settings_simple_language">
+      </select>
+     </label>
+    </div>
+   </div>
+   <div class="modal-footer">
+    <a class="waves-effect btn-flat modal-close" href="#">
+     <span class="translatable_return">
+      返回
+     </span>
+    </a>
+   </div>
+  </div>
+  <!-- Select Additional Blocks menu -->
+  <div class="modal modal-fixed-footer" id="blocks_menu">
+   <div class="modal-content">
+    <div>
+     <h4>
+      <span class="translatable_addBlocksTitle">
+       更多積木
+      </span>
+     </h4>
+    </div>
+    <div id="blocks_menu_body">
+    </div>
+   </div>
+   <div class="modal-footer">
+    <a class="waves-effect btn-flat modal-close" href="#">
+     <span class="translatable_return">
+      返回
+     </span>
+    </a>
+   </div>
+  </div>
+  <!-- Examples: Displayed examples from folder -->
+  <div class="modal modal-fixed-footer" id="examples_dialog">
+   <div class="modal-content">
+    <h4>
+     <span class="translatable_examples">
+      範例
+     </span>
+    </h4>
+    <input id="examples_location" type="hidden"/>
+    <div class="modal_example" id="examples_list">
+    </div>
+   </div>
+   <div class="modal-footer">
+    <a class="waves-effect btn-flat modal-close" href="#">
+     <span class="translatable_return">
+      返回
+     </span>
+    </a>
+   </div>
+  </div>
+  <!-- About: Display about dialog -->
+  <div class="modal modal-fixed-footer" id="about_dialog">
+   <div class="modal-content">
+    <h4>
+     <span class="translatable_about">
+      關於
+     </span>
+    </h4>
+    <div class="modal_section">
+     <h4>
+      本Ardublockly軟體由
+     </h4>
+     <br/>
+     <h3>
+      桃園市立陽明高中
+     </h3>
+     <br/>
+     <h3>
+      國立臺灣師範大學科技系
+     </h3>
+     <br/>
+     <h4>
+      共同重構開發
+     </h4>
+    </div>
+   </div>
+   <div class="modal-footer">
+    <a class="waves-effect btn-flat modal-close" href="#">
+     <span class="translatable_return">
+      返回
+     </span>
+    </a>
+   </div>
+  </div>
+  <!-- General Alert: Content is loaded using JavaScript to display alerts -->
+  <div class="modal modal_small modal-fixed-footer" id="gen_alert">
+   <div class="modal-content">
+    <h5 id="gen_alert_title">
+     空訊息
+    </h5>
+    <p>
+     <span id="gen_alert_body">
+      空訊息內容
+     </span>
+    </p>
+   </div>
+   <div class="modal-footer">
+    <a class="waves-effect btn-flat modal-close" href="#" id="gen_alert_ok_link">
+     <span class="translatable_okay">
+      確定
+     </span>
+    </a>
+    <a class="waves-effect btn-flat modal-close" href="#" id="gen_alert_cancel_link">
+     <span class="translatable_cancel">
+      取消
+     </span>
+    </a>
+   </div>
+  </div>
+  <!-- Prompt: Content is loaded using JavaScript to display input prompt -->
+  <div class="modal modal_small modal-fixed-footer" id="gen_prompt">
+   <div class="modal-content">
+    <p>
+     <span id="gen_prompt_message">
+      Prompt message
+     </span>
+    </p>
+    <p>
+     <label for="gen_prompt_input">
+      <input id="gen_prompt_input" value="test"/>
+     </label>
+    </p>
+   </div>
+   <div class="modal-footer">
+    <a class="waves-effect btn-flat modal-close" href="#" id="gen_prompt_ok_link">
+     <span class="translatable_okay">
+      確定
+     </span>
+    </a>
+    <a class="waves-effect btn-flat modal-close" href="#" id="gen_prompt_cancel_link">
+     <span class="translatable_cancel">
+      取消
+     </span>
+    </a>
+   </div>
+  </div>
+  <!-- Local Modal to be shown if Ardublockly Server is not running. -->
+  <div class="modal" id="not_running_dialog">
+   <div class="modal-content">
+    <div>
+     <h4>
+      <span class="translatable_noServerTitle">
+       Ardublockly應用程式沒有啟動
+      </span>
+     </h4>
+    </div>
+    <div class="translatable_noServerBody">
+     <p>
+      為了讓所有 Ardublockly 功能可正確啟用, Ardublockly桌面應用程式必須在本機電腦執行.
+     </p>
+     <p>
+      如果你是使用線上版本, 你將無法建立選項設定和載入積木程式至Ardublockly.
+     </p>
+     <p>
+      安裝說明請參閱
+      <a href='\"https://github.com/darrintw/ardublockly\"'>
+       Ardublockly檔案庫
+      </a>
+      .
+     </p>
+     <p>
+      如果Ardublockly已經安裝, 請確認應用程式正確的啟動且執行中.
+     </p>
+    </div>
+   </div>
+   <div class="modal-footer">
+    <a class="waves-effect btn-flat modal-close" href="#">
+     <span class="translatable_okay">
+      確定
+     </span>
+    </a>
+   </div>
+  </div>
+  <!-- Desktop version of Ardublockly JS, needs to be loaded first. -->
+  <script src="ardublockly_desktop.js">
+  </script>
+  <!-- jQuery and Materialize JS -->
+  <script src="js_libs/jquery-2.1.3.min.js">
+  </script>
+  <script src="materialize/materialize.js">
+  </script>
+  <!-- FileSaver JS -->
+  <script src="js_libs/FileSaver.min.js">
+  </script>
+  <!-- JS Diff -->
+  <script src="js_libs/diff.js">
+  </script>
+  <!-- Prettify JS -->
+  <script src="prettify/prettify.js">
+  </script>
+  <!-- Ardublockly app -->
+  <script src="ardublocklyserver_ajax.js">
+  </script>
+  <script src="ardublockly_lang.js">
+  </script>
+  <script src="ardublockly_design.js">
+  </script>
+  <script src="ardublockly_toolbox.js">
+  </script>
+  <script src="ardublockly_blockly.js">
+  </script>
+  <script src="ardublockly.js">
+  </script>
+  <script>
+   window.addEventListener('load', function load() {
+        window.removeEventListener('load', load, false);
+        Ardublockly.init();
+    });
+  </script>
+ </body>
+</html>
