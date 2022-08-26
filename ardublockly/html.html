@@ -120,7 +120,7 @@
     var elem = document.documentElement;
     var fullscreen = 0;
 
-    function ocFullscreen(elem) {
+    function ocFullscreen(btn_elem) {
        /* View in fullscreen */
       if (fullscreen === 0){
         if (elem.requestFullscreen) {
@@ -143,9 +143,9 @@
         fullscreen = 0;
       }
       if (fullscreen == 1) {
-      	elem.textContent = '&#8690;';
+      	btn_elem.textContent = '&#8690;';
       } else {
-      	elem.textContent = '&#8689;';
+      	btn_elem.textContent = '&#8689;';
       } 	    
     }
     
