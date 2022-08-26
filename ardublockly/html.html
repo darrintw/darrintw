@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+    <div id="error">請旋轉螢幕</div>
+    <div id="form">    
+        <div class="row">
+            <button id="btn_a">←</button>
+            <div class="col">
+                <button id="btn_w">↑</button>
+                <button id="btn_x">↓</button>
+            </div>            
+            <button id="btn_d">→</button>
+            <div class="col">    </div>
+            <div class="col">
+                <button id="btn_r">＋</button>
+                <button id="btn_v">－</button>
+            </div>
+            <div class="col">    </div>
+            <div class="col">
+                <button id="btn_t">＋</button>
+                <button id="btn_b">－</button>
+            </div>
+            <button id="btn_h" style="color:#FF66CC">□</button>
+            <div class="col">
+                <button id="btn_y" style="color:#66FF66">△</button>
+                <button id="btn_i" style="color:#CCFFFF">X</button>
+            </div>            
+            <button id="btn_k" style="color:#FF0033">○</button>
+            <div class="col">
+                <div></div>
+                <button id="btn_f" style="min-width: 50px; min-height:50px;max-width: 50px;max-height: 50px;font-size: large;">⇱</button>                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<style>
+    * {
+        box-sizing: border-box;
+        outline: unset;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    
+    html {
+        background-color: #333;
+    }
+    
+    body {
+        margin: unset;
+    }
+    
+    #error {
+        width: 100vw;
+        height: 100vh;
+        text-align: center;
+        font-size: xx-large;
+        color: white;
+        line-height: 100vh;
+        font-weight: 900;
+    }
+    
+    button {
+        min-width: 90px;
+        min-height: 90px;
+        max-width: 90px;
+        max-height: 90px;
+        padding: unset;
+        border: unset;
+        background-color: rgb(41, 117, 189);
+        color: white;
+        border-radius: 25%;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+
+    button:active{
+        background-color: rgb(41, 188, 183);
+    }   
+     
+    #form {
+        width: 90vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: auto;
+    }
+    
+    .row {
+        width: 90vw;
+        height: 400px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .col {
+        width: 300px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<script>
+    /* Get the documentElement (<html>) to display the page in fullscreen */
+    var elem = document.documentElement;
+    var fullscreen = 0;
+
+    function ocFullscreen() {
+       /* View in fullscreen */
+      if (fullscreen === 0){
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+          elem.msRequestFullscreen();
+        }
+        
+        fullscreen = 1;
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+          document.msExitFullscreen();
+        }        
+        fullscreen = 0;
+      }
+    }
+    
+    var la = document.getElementById('error');
+    var fo = document.getElementById('form');
+
+    function resize() {
+        if (document.body.offsetWidth > document.body.offsetHeight) {
+            la.style.display = "none";
+            fo.style.display = "flex";
+        } else {
+            la.style.display = "block";
+            fo.style.display = "none";
+        }
+        console.log("h:" + document.body.offsetHeight + ", W:" + document.body.offsetWidth);
+    }
+    
+    window.addEventListener('resize', resize);
+    
+    window.onload = resize();
+	
+    var interval;
+    
+    /*判斷裝置是否是手機*/
+    var mobileDevices = ['Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone']
+    var isMobileDevice=false
+    for(var i=0;i<mobileDevices.length;i++){
+        if(navigator.userAgent.match(mobileDevices[i])){
+            isMobileDevice=true
+        }
+    }
+    
+    /*btn-F*/
+    var btn_f = document.getElementById('btn_f');
+    btn_f.addEventListener('mousedown', function() {
+      ocFullscreen();
+      if (fullscreen == 1) {
+      	btn_f.textContent = '⇲';
+      } else {
+      	btn_f.textContent = '⇱';
+      }
+    });
+    btn_f.addEventListener('touchstart', function() {      
+      ocFullscreen();
+      if (fullscreen == 1) {
+      	btn_f.textContent = '⇲';
+      } else {
+      	btn_f.textContent = '⇱';
+      }      
+    });
+            
+    /*btn-w*/
+    var btn_w = document.getElementById('btn_w');
+    btn_w.addEventListener('mousedown', function() {      
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=w", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_w.addEventListener('touchstart', function() {      
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=w", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_w.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_w.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_w.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    	
+    /*btn-x*/
+    var btn_x = document.getElementById('btn_x');
+    btn_x.addEventListener('mousedown', function() {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=x", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_x.addEventListener('touchstart', function() {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=x", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_x.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_x.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_x.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    	
+    /*btn-a*/
+    var btn_a = document.getElementById('btn_a');
+    btn_a.addEventListener('mousedown', function() {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=a", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_a.addEventListener('touchstart', function() {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=a", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_a.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_a.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_a.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    
+    /*btn-d*/
+    var btn_d = document.getElementById('btn_d');
+    btn_d.addEventListener('mousedown', function() {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=d", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_d.addEventListener('touchstart', function() {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=d", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_d.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_d.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_d.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    	
+    /*btn-r*/
+    var btn_r = document.getElementById('btn_r');
+    btn_r.addEventListener('mousedown', function() {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=r", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_r.addEventListener('touchstart', function() {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=r", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_r.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_r.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_r.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=s", true);
+    	  xhttp.send();
+    	}
+    });
+    
+    /*btn-v*/
+    var btn_v = document.getElementById('btn_v');
+    btn_v.addEventListener('mousedown', function() {
+      if(!isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=v", true);
+        xhttp.send();
+      }
+    });
+    btn_v.addEventListener('touchstart', function() {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=v", true);
+        xhttp.send();
+      }
+    });
+    btn_v.addEventListener('mouseup', function () {
+      if(!isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    btn_v.addEventListener('touchend', function () {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    btn_v.addEventListener('touchcancel', function () {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    
+    /*btn-t*/
+    var btn_t = document.getElementById('btn_t');
+    btn_t.addEventListener('mousedown', function() {
+      if(!isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=t", true);
+        xhttp.send();
+      }
+    });
+    btn_t.addEventListener('touchstart', function() {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=t", true);
+        xhttp.send();
+      }
+    });
+    btn_t.addEventListener('mouseup', function () {
+      if(!isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    btn_t.addEventListener('touchend', function () {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    btn_t.addEventListener('touchcancel', function () {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    
+    /*btn-b*/
+    var btn_b = document.getElementById('btn_b');
+    btn_b.addEventListener('mousedown', function() {
+      if(!isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=b", true);
+        xhttp.send();
+      }
+    });
+    btn_b.addEventListener('touchstart', function() {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=b", true);
+        xhttp.send();
+      }
+    });
+    btn_b.addEventListener('mouseup', function () {
+      if(!isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    btn_b.addEventListener('touchend', function () {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    btn_b.addEventListener('touchcancel', function () {
+      if(isMobileDevice){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "setValue?Value=s", true);
+        xhttp.send();
+      }
+    });
+    
+    /*btn-y*/
+    var btn_y = document.getElementById('btn_y');
+    btn_y.addEventListener('mousedown', function() {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=y", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_y.addEventListener('touchstart', function() {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=y", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_y.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=u", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_y.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=u", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_y.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=u", true);
+    	  xhttp.send();
+    	}
+    });
+    	
+    /*btn-i*/
+    var btn_i = document.getElementById('btn_i');
+    btn_i.addEventListener('mousedown', function() {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=i", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_i.addEventListener('touchstart', function() {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=i", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_i.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=u", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_i.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=u", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_i.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=u", true);
+    	  xhttp.send();
+    	}
+    });
+    	
+    /*btn-h*/
+    var btn_h = document.getElementById('btn_h');
+    btn_h.addEventListener('mousedown', function() {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=h", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_h.addEventListener('touchstart', function() {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=h", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_h.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=j", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_h.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=j", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_h.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=j", true);
+    	  xhttp.send();
+    	}
+    });
+    
+    /*btn-k*/
+    var btn_k = document.getElementById('btn_k');
+    btn_k.addEventListener('mousedown', function() {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=k", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_k.addEventListener('touchstart', function() {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=k", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_k.addEventListener('mouseup', function () {
+    	if(!isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=j", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_k.addEventListener('touchend', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=j", true);
+    	  xhttp.send();
+    	}
+    });
+    btn_k.addEventListener('touchcancel', function () {
+    	if(isMobileDevice){
+    	  var xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "setValue?Value=j", true);
+    	  xhttp.send();
+    	}
+    });
+</script>
